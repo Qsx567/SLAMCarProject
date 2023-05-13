@@ -1,4 +1,9 @@
 /* USER CODE BEGIN Header */
+#include "motor.h"
+
+
+
+
 /**
   ******************************************************************************
   * @file           : main.c
@@ -18,6 +23,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -84,8 +90,23 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM5_Init();
+  MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
-
+	
+	// 电机PWM，满占空比是7200
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1); // M1_PWMA_1
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2); // M1_PWMA_2
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_3); // M3_PWMA_1
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_4); // M3_PWMA_2
+	
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1); // M4_PWMA_1
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_2); // M4_PWMA_2
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_3); // M2_PWMA_1
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4); // M2_PWMA_2
+	
+	
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
