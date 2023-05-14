@@ -2,7 +2,8 @@
 #include "motor.h"
 #include "encoder.h"
 #include "system.h"
-
+#include "motion_model.h"
+#include "pid.h"
 
 
 /**
@@ -69,6 +70,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		if(enc_cnt > 10){ // 10ms/100hz采集编码器数据
 			enc_cnt = 0;
 			Get_Velocity();
+			
 		}
 	}
 }
@@ -131,6 +133,11 @@ int main(void)
 	HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL); // M3_ENC
 	HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL); // M4_ENC
 	
+	Moto1.Target_Speed = 0.5;
+	Moto2.Target_Speed = 0.5;
+	Moto3.Target_Speed = 0.5;
+	Moto4.Target_Speed = 0.5;
+	
 	// 定时器中断
 	HAL_TIM_Base_Start_IT(&htim6); // 开启定时中断TIM6
 	
@@ -140,8 +147,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		Motor_Control(3200,3200,3200,3200);
-		
+//		HAL_Delay(40);
+//		Motor_Control(PID_Incremental(&Moto1),PID_Incremental(&Moto2),PID_Incremental(&Moto3),PID_Incremental(&Moto4));
+//		
 
 		
 		
