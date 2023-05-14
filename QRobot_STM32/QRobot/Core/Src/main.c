@@ -4,7 +4,8 @@
 #include "system.h"
 #include "motion_model.h"
 #include "pid.h"
-
+#include "delay.h"
+#include "ps2.h"
 
 /**
   ******************************************************************************
@@ -50,7 +51,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+int PS2_key=0;
+//extern int PS2_LX, PS2_LY, PS2_RX, PS2_RY;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,14 +66,23 @@ void SystemClock_Config(void);
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	static uint16_t enc_cnt = 0;
+	static uint16_t ps2_cnt = 0;
 	
 	if(htim == &htim6){
 		enc_cnt ++;
+		ps2_cnt ++;
+		
 		if(enc_cnt > 10){ // 10ms/100hz采集编码器数据
 			enc_cnt = 0;
 			Get_Velocity();
-			
 		}
+		
+		if(ps2_cnt > 60){
+			ps2_cnt = 0;
+			PS2_key = PS2_Receive();
+			PS2_Pub_vel(PS2_key);
+		}
+		
 	}
 }
 
@@ -115,6 +126,9 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
+	HAL_Delay_us_init(72);
+	
+	PS2_Init(); //PS2手柄初始化
 	
 	// 电机PWM，满占空比是7200
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1); // M1_PWMA_1

@@ -11,9 +11,15 @@
   - Encoder2:TIM2
   - Encoder3:TIM3
   - Encoder4:TIM4
+- PS2遥控器
+  - PC0 ->Input    PS2_DAT
+  - PC1 ->Output   PS2_COM
+  - PC2 ->Output   PS2_ATT
+  - PC3 ->OutPut   PS2_CLK
 
 已完成情况：
 - [x]  电机控制（PWM）相关代码
 - [x]  编码器数据的采集以及转化为速度m/s
 - [x]  机器人运动模型（四轮模型）运动学逆解
 - [x]  PID控制算法（增量式） 
+- [x]  PS2遥控器相关代码

@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../User/motor/inc;../User/encoder/inc;..\User\system\inc;..\User\motion_model\inc;..\User\pid\inc</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../User/motor/inc;../User/encoder/inc;../User/system/inc;../User/motion_model/inc;../User/pid/inc;..\User\ps2\inc;..\User\delay\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -551,6 +551,26 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>User/system</GroupName>
+          <Files>
+            <File>
+              <FileName>system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\system\src\system.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>User/delay</GroupName>
+          <Files>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\delay\src\delay.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>User/motor</GroupName>
           <Files>
             <File>
@@ -571,16 +591,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>User/system</GroupName>
-          <Files>
-            <File>
-              <FileName>system.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\system\src\system.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>User/motion_model</GroupName>
           <Files>
             <File>
@@ -597,6 +607,16 @@
               <FileName>pid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\pid\src\pid.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>User/ps2</GroupName>
+          <Files>
+            <File>
+              <FileName>ps2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\ps2\src\ps2.c</FilePath>
             </File>
           </Files>
         </Group>

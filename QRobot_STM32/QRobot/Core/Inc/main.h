@@ -59,6 +59,14 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define KEY_Pin GPIO_PIN_15
 #define KEY_GPIO_Port GPIOC
+#define PS2_DAT_Pin GPIO_PIN_0
+#define PS2_DAT_GPIO_Port GPIOC
+#define PS2_COM_Pin GPIO_PIN_1
+#define PS2_COM_GPIO_Port GPIOC
+#define PS2_ATT_Pin GPIO_PIN_2
+#define PS2_ATT_GPIO_Port GPIOC
+#define PS2_CLK_Pin GPIO_PIN_3
+#define PS2_CLK_GPIO_Port GPIOC
 #define BEEP_Pin GPIO_PIN_7
 #define BEEP_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_12
