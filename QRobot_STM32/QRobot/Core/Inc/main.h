@@ -69,6 +69,10 @@ void Error_Handler(void);
 #define PS2_CLK_GPIO_Port GPIOC
 #define BEEP_Pin GPIO_PIN_7
 #define BEEP_GPIO_Port GPIOA
+#define MPU6050_SDA_Pin GPIO_PIN_4
+#define MPU6050_SDA_GPIO_Port GPIOC
+#define MPU6050_SCL_Pin GPIO_PIN_5
+#define MPU6050_SCL_GPIO_Port GPIOC
 #define LED_Pin GPIO_PIN_12
 #define LED_GPIO_Port GPIOB
 

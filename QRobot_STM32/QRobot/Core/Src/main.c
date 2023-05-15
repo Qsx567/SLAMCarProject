@@ -7,6 +7,7 @@
 #include "delay.h"
 #include "ps2.h"
 #include "serial.h"
+#include "mpu6050.h"
 
 /**
   ******************************************************************************
@@ -71,11 +72,19 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	static uint16_t enc_cnt = 0;
 	static uint16_t ps2_cnt = 0;
 	static uint16_t uart_cnt = 0;
+	static uint16_t imu_cnt = 0;
 	
 	if(htim == &htim6){
 		enc_cnt ++;
 		ps2_cnt ++;
 		uart_cnt ++;
+		imu_cnt ++;
+		
+		if(imu_cnt > 5){ // 5ms采集mpu6050数据
+			imu_cnt = 0;
+			MPU_Get_Accelerometer(&Send_Data.Sensor_str.Accelerometer);
+			MPU_Get_Gyroscope(&Send_Data.Sensor_str.Gyroscope);
+		}
 		
 		if(enc_cnt > 10){ // 10ms/100hz采集编码器数据
 			enc_cnt = 0;
@@ -139,6 +148,7 @@ int main(void)
 	HAL_Delay_us_init(72);
 	
 	PS2_Init(); //PS2手柄初始化
+	MPU6050_Init(); // MPU6050初始化
 	
 	// 电机PWM，满占空比是7200
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1); // M1_PWMA_1

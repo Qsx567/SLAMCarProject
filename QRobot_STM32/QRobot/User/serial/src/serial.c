@@ -3,6 +3,7 @@
 #include "motion_model.h"
 #include "usart.h"
 #include "pid.h"
+#include "mpu6050.h"
 
 Upload_Data Send_Data, Recive_Data;
 
@@ -36,6 +37,10 @@ void STM32_TO_ROS(void)
 	
 	Send_Data.Sensor_str.MotoStr[3].Moto_CurrentSpeed = Moto4.Current_Speed;
 	Send_Data.Sensor_str.MotoStr[3].Moto_TargetSpeed = Moto4.Target_Speed;
+	
+	// 调用MPU6050读取加速度值和角速度值
+	MPU_Get_Accelerometer(&Send_Data.Sensor_str.Accelerometer);
+	MPU_Get_Gyroscope(&Send_Data.Sensor_str.Gyroscope);
 	
 	// 发送数据
 	for (uint8_t i = 0; i < PROTOCOL_DATA_SIZE; i++){

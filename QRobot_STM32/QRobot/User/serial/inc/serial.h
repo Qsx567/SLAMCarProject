@@ -5,7 +5,7 @@
 #define PROTOCOL_HEADER 0x5BB5 // 协议包头
 #define PROTOCOL_END    0x5AA5 // 协议包尾
 
-#define PROTOCOL_DATA_SIZE 56  //数据包大小
+#define PROTOCOL_DATA_SIZE 68  //数据包大小
 
 #pragma pack(1) // 设置结构体的边界对齐为1个字节
 
@@ -15,6 +15,14 @@ typedef struct _Moto_str
 	float Moto_CurrentSpeed;
 	float Moto_TargetSpeed;
 }Moto_str;
+
+// MPU6050结构体
+typedef struct _MPU6050_Str
+{
+	short X_data;
+	short Y_data;
+	short Z_data;
+}MPU6050_Str;
 
 //ROS和STM32串口通信的数据包
 typedef union _Upload_Data
@@ -28,6 +36,10 @@ typedef union _Upload_Data
 		// 前向运动学Vx,w
 		float X_speed;	 				// 00 00 00 00 
 		float Z_speed;   				// 00 00 00 00 
+		
+		// 加速度值和陀螺仪值
+		MPU6050_Str Accelerometer; // C4 06 F0 FD 6C 38
+		MPU6050_Str Gyroscope;     // D8 FF 03 00 EB FF
 		
 		// 电机的当前速度值和目标速度值
 		Moto_str MotoStr[4]; 		//M1 00 00 00 00  00 00 00 00

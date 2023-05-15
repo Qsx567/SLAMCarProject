@@ -51,7 +51,8 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, PS2_COM_Pin|PS2_ATT_Pin|PS2_CLK_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC, PS2_COM_Pin|PS2_ATT_Pin|PS2_CLK_Pin|MPU6050_SDA_Pin
+                          |MPU6050_SCL_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
@@ -71,8 +72,10 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(PS2_DAT_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PCPin PCPin PCPin */
-  GPIO_InitStruct.Pin = PS2_COM_Pin|PS2_ATT_Pin|PS2_CLK_Pin;
+  /*Configure GPIO pins : PCPin PCPin PCPin PCPin
+                           PCPin */
+  GPIO_InitStruct.Pin = PS2_COM_Pin|PS2_ATT_Pin|PS2_CLK_Pin|MPU6050_SDA_Pin
+                          |MPU6050_SCL_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
