@@ -25,7 +25,14 @@
     <font color=#a0a0a0 size=2> 第二层亚克力板图纸</font>
 </div>
 
-## 二、机器人底盘控制器--> STM32
+## 二、机器人底盘控制器原理图
+
+<div align="center">
+    <img src="./pics/SCH_SLAMCar.png" width="500" ><br>
+    <font color=#a0a0a0 size=2> 基于SMT32F103RCT6的控制器原理图</font>
+</div>
+
+## 三、机器人底盘控制器--> STM32
 - 电机控制（motor）:TIM5/TIM8
   - Motor1：TIM8_CH1/TIM8_CH2
   - Motor2：TIM5_CH3/TIM5_CH4
