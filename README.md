@@ -1,12 +1,19 @@
 # SLAMCarProject
 ### 本项目为我设计的Q-Robot，其中包括**底层控制器**（基于STM32F103RCT6),上层控制器为**树莓派4b**。
 ## 一、机器人底盘（亚克力板图纸）
-- 总共包括两个文件
+- 总共包括两个文件(plate->plate1.dwg/plate2.dwg)
   - 第一层亚克力板图纸（可放置520电机、锂电池、思岚A1激光雷达/串口板）
   - 第二层亚克力板图纸（可放置Orbbec Astra Pro RGB-D相机、树莓派4B、STM32控制板、PS2遥控器接收器、7寸的显示屏）
 
-![图片](./pics/plate1.png#pic_right=100x100)
+<div align="center">
+    <img src="./pics/plate1.png" width="350" ><br>
+    <font color=#a0a0a0 size=2> 第一层亚克力板图纸</font>
+</div>
 
+<div align="center">
+    <img src="./pics/plate2.png" width="350" ><br>
+    <font color=#a0a0a0 size=2> 第二层亚克力板图纸</font>
+</div>
 
 ## 二、机器人底盘控制器--> STM32
 - 电机控制（motor）:TIM5/TIM8
