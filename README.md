@@ -1,17 +1,27 @@
 # SLAMCarProject
-### 本项目为我设计的Q-Robot，其中包括**底层控制器**（基于STM32F103RCT6),上层控制器为**树莓派4b**。
+### 本项目为我设计的移动SLAM机器人，命名为： <font face="Times New Roman">Q-Robot</font>
+
+- 机器人底盘控制器：**STM32F103RCT6**
+- 上层控制器：**树莓派4B**
+- 传感器：
+  - 思岚A1激光雷达
+  - Orbbec Astra Pro RGB-D相机
+  - 高精度9轴惯导模块N100
+  - PS2遥控器
+
+
 ## 一、机器人底盘（亚克力板图纸）
 - 总共包括两个文件(plate->plate1.dwg/plate2.dwg)
   - 第一层亚克力板图纸（可放置520电机、锂电池、思岚A1激光雷达/串口板）
   - 第二层亚克力板图纸（可放置Orbbec Astra Pro RGB-D相机、树莓派4B、STM32控制板、PS2遥控器接收器、7寸的显示屏）
 
 <div align="center">
-    <img src="./pics/plate1.png" width="350" ><br>
+    <img src="./pics/plate1.png" width="400" ><br>
     <font color=#a0a0a0 size=2> 第一层亚克力板图纸</font>
 </div>
 
 <div align="center">
-    <img src="./pics/plate2.png" width="350" ><br>
+    <img src="./pics/plate2.png" width="400" ><br>
     <font color=#a0a0a0 size=2> 第二层亚克力板图纸</font>
 </div>
 
