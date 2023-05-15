@@ -3,5 +3,5 @@
 #include "system.h"
 
 float PID_Incremental(_Moto *MOTOR);
-
+extern float KP,KI,KD;
 #endif

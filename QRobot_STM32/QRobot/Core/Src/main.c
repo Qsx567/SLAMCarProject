@@ -6,6 +6,7 @@
 #include "pid.h"
 #include "delay.h"
 #include "ps2.h"
+#include "serial.h"
 
 /**
   ******************************************************************************
@@ -27,6 +28,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -52,6 +54,7 @@
 
 /* USER CODE BEGIN PV */
 int PS2_key=0;
+extern uint8_t uart5_rxbuff;
 //extern int PS2_LX, PS2_LY, PS2_RX, PS2_RY;
 /* USER CODE END PV */
 
@@ -67,16 +70,22 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	static uint16_t enc_cnt = 0;
 	static uint16_t ps2_cnt = 0;
+	static uint16_t uart_cnt = 0;
 	
 	if(htim == &htim6){
 		enc_cnt ++;
 		ps2_cnt ++;
+		uart_cnt ++;
 		
 		if(enc_cnt > 10){ // 10ms/100hz采集编码器数据
 			enc_cnt = 0;
 			Get_Velocity();
 		}
-		
+		if(uart_cnt > 50){
+			uart_cnt = 0;
+			STM32_TO_ROS();
+		}
+			
 		if(ps2_cnt > 60){
 			ps2_cnt = 0;
 			PS2_key = PS2_Receive();
@@ -125,6 +134,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_TIM6_Init();
+  MX_UART5_Init();
   /* USER CODE BEGIN 2 */
 	HAL_Delay_us_init(72);
 	
@@ -155,6 +165,8 @@ int main(void)
 	// 定时器中断
 	HAL_TIM_Base_Start_IT(&htim6); // 开启定时中断TIM6
 	
+	// 串口
+	HAL_UART_Receive_IT(&huart5,(void *)&uart5_rxbuff,1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
