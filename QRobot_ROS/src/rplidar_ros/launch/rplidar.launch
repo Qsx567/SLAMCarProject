@@ -1,0 +1,34 @@
+<launch>
+  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+    <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>
+    <param name="serial_baudrate"     type="int"    value="115200"/><!--A1/A2 -->
+    <!-- <param name="serial_baudrate"     type="int"    value="256000"/> --><!--A3 -->
+    <!-- <param name="serial_baudrate"     type="int"    value="1000000"/> --><!--S2 -->
+    <param name="frame_id"            type="string" value="laser"/>
+    <param name="inverted"            type="bool"   value="false"/>
+    <param name="angle_compensate"    type="bool"   value="true"/>
+     
+    <param name="is_parted"    type="bool"   value="false"/>  <!-- 是否分割角度 -->
+    
+    <!-- 若不分割角度 -->
+    <param name="angle_start"         type="double" value="330"/>
+    <param name="angle_end"           type="double" value="30"/>
+    
+    <param name="distance_min"        type="double" value="0"/>
+    <param name="distance_max"        type="double" value="12"/>
+
+    <!-- 若分割角度 -->
+    <param name="angle1_start"        type="double" value="40"/>
+    <param name="angle1_end"          type="double" value="50"/>
+
+    <param name="angle2_start"        type="double" value="130"/>
+    <param name="angle2_end"          type="double" value="140"/> 
+
+    <param name="angle3_start"        type="double" value="220"/>
+    <param name="angle3_end"          type="double" value="230"/>
+
+    <param name="angle4_start"        type="double" value="310"/>
+    <param name="angle4_end"          type="double" value="315"/>
+
+  </node>
+</launch>
