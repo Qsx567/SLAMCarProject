@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="rosbag" type="play" name="playe"  args="/home/wheeltec/gps_ws/src/fdilink_ahrs/data/gps_data.bag  --clock -l --topic /gps/fix " />
+  <node pkg="tf" type="static_transform_publisher" name="base_gps" args="0 0 0 0 0 0 base_footprint navsat_link 100"/>
+</launch>
