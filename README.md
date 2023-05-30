@@ -68,6 +68,10 @@
 - MPU6050（IIC）
   - MPU6050_SDA：PC4
   - MPU6050_SCL：PC5
+## 五、ROS相关教程
+- 1.使用Wheeltec N100惯性模块
+  - 链接: [ROS下使用N100模块](https://qiushuxin.blog.csdn.net/article/details/130932265)
+
 
 已完成情况：
 - [x]  添加电机控制（PWM）相关代码
