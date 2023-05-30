@@ -69,9 +69,11 @@
   - MPU6050_SDA：PC4
   - MPU6050_SCL：PC5
 ## 五、ROS相关教程
-- 1.使用Wheeltec N100惯性模块
+- 1.使用思岚A1激光雷达
+  - 链接: [ROS下使用激光雷达](https://blog.csdn.net/qq_42108414/article/details/121065197?csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22121065197%22%2C%22source%22%3A%22qq_42108414%22%7D)
+- 2.使用Wheeltec N100惯性模块
   - 链接: [ROS下使用N100模块](https://qiushuxin.blog.csdn.net/article/details/130932265)
-- 2.使用乐视深度相机LeTMC-520
+- 3.使用乐视深度相机LeTMC-520
   - 链接: [ROS下使用乐视深度相机LeTMC-520](https://qiushuxin.blog.csdn.net/article/details/130940896)
 
 已完成情况：
