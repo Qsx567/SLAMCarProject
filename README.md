@@ -71,7 +71,8 @@
 ## 五、ROS相关教程
 - 1.使用Wheeltec N100惯性模块
   - 链接: [ROS下使用N100模块](https://qiushuxin.blog.csdn.net/article/details/130932265)
-
+- 2.使用乐视深度相机LeTMC-520
+  - 链接: [ROS下使用乐视深度相机LeTMC-520](https://qiushuxin.blog.csdn.net/article/details/130940896)
 
 已完成情况：
 - [x]  添加电机控制（PWM）相关代码
@@ -84,4 +85,5 @@
 - [x]  新增FreeRTOS功能，后续只修改维护QRobot_FreeRTOS，基本功能和无OS版本一致，不同之处只是一些逻辑方面
 - [x]  增加思岚A1激光雷达驱动代码
 - [x]  增加N100惯性导航模块驱动代码 
+- [x]  增加乐视深度相机LeTMC-520驱动代码  
 
