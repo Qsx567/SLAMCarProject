@@ -1,6 +1,9 @@
 # SLAMCarProject
 ### 本项目为我设计的移动SLAM机器人，命名为： <font face="Times New Roman">Q-Robot</font>
-
+<div align="center">
+    <img src="./pics/QRobot.jpg" width="500" ><br>
+    <font color=#a0a0a0 size=2> 第一层亚克力板图纸</font>
+</div>
 - 机器人底盘控制器：**STM32F103RCT6**
 - 上层控制器：**树莓派4B**
 - 传感器：
