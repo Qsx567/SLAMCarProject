@@ -4,7 +4,7 @@
 #define ROBOT_WHEEL_WIDTH		0.243		// 主动轮轮距,单位：m
 #define ROBOT_WHEEL_HIGHT		0.163		// 小车前后轴的轴距,单位：m
 
-#define PWM_OUT_LIMT 				7200		// PWM最大值
+#define PWM_OUT_LIMT 				7100		// PWM最大值
 
 typedef struct
 {

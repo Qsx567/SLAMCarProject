@@ -16,10 +16,10 @@ int16_t getTIMx_DetaCnt(TIM_HandleTypeDef *htim)
 // ¶ÁÈ¡±àÂëÆ÷Öµ
 void Get_Velocity(void)
 {
-	Moto1.Encoder_Value = -getTIMx_DetaCnt(&htim1);	
-	Moto2.Encoder_Value = -getTIMx_DetaCnt(&htim2);	
-	Moto3.Encoder_Value = -getTIMx_DetaCnt(&htim3);	
-	Moto4.Encoder_Value = getTIMx_DetaCnt(&htim4);	
+	Moto1.Encoder_Value = getTIMx_DetaCnt(&htim1);	
+	Moto2.Encoder_Value = getTIMx_DetaCnt(&htim2);	
+	Moto3.Encoder_Value = getTIMx_DetaCnt(&htim3);	
+	Moto4.Encoder_Value = -getTIMx_DetaCnt(&htim4);	
 	
 	Moto1.Current_Speed = CURRENT_MOTO_SPEED(Moto1.Encoder_Value);
 	Moto2.Current_Speed = CURRENT_MOTO_SPEED(Moto2.Encoder_Value);

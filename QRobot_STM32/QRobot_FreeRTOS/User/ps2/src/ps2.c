@@ -386,7 +386,7 @@ void PS2_Pub_vel(int PS2_KEY)
 //									Recive_Data.Sensor_str.X_speed = 0.5;
 //									Recive_Data.Sensor_str.Z_speed = 0;
 //				
-									ps2.X_speed = 0.5;
+									ps2.X_speed = 1;
 									ps2.Z_speed = 0;
 //				Moto1.Target_Speed = 0.5;
 //				Moto2.Target_Speed = 0.5;
@@ -398,7 +398,7 @@ void PS2_Pub_vel(int PS2_KEY)
 //									Motor_Control(-3000,-3000,-3000,-3000);//об
 //									Recive_Data.Sensor_str.X_speed = -0.5;
 //									Recive_Data.Sensor_str.Z_speed = 0;
-									ps2.X_speed = -0.5;
+									ps2.X_speed = -1;
 									ps2.Z_speed = 0;
 //				Moto1.Target_Speed = -0.5;
 //				Moto2.Target_Speed = -0.5;

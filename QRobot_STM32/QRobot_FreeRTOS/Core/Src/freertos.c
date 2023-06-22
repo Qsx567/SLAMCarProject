@@ -9,6 +9,7 @@
 #include "mpu6050.h"
 
 
+// ---------------- 本文件为FreeRTOS的任务函数 -------------------------
 
 /**
   ******************************************************************************
@@ -159,7 +160,6 @@ void StartControlTask(void const * argument)
   while(1)
   {
 		osDelayUntil(&lastWakeTime,TimeIncrement);
-		
 		Get_Velocity(); // 获取小车当前速度
 //		FourWheel_car_Motion_Inverse(Recive_Data.Sensor_str.X_speed,Recive_Data.Sensor_str.Z_speed);
 		FourWheel_car_Motion_Inverse(ps2.X_speed,ps2.Z_speed);

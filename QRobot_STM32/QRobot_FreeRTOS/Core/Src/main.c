@@ -111,7 +111,7 @@ int main(void)
 
 	PS2_Init(); //PS2手柄初始化
 	MPU6050_Init(); // MPU6050初始化
-	// 电机PWM，满占空比是7200
+	// 电机PWM，满占空比是7199
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1); // M1_PWMA_1
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2); // M1_PWMA_2
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_3); // M3_PWMA_1

@@ -6,7 +6,7 @@
 // 只使用PI控制
 
 float KP = 0;
-float KI = 80;
+float KI = 200;
 float KD = 0;
 
 
