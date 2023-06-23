@@ -8,6 +8,7 @@
 #include "ps2.h"
 #include "serial.h"
 #include "mpu6050.h"
+#include "oled.h"
 
 /**
   ******************************************************************************
@@ -108,7 +109,11 @@ int main(void)
   MX_TIM4_Init();
   MX_UART5_Init();
   /* USER CODE BEGIN 2 */
-
+	
+	OLED_Init();//OLED初始化
+	
+//	OLED_Refresh();
+	
 	PS2_Init(); //PS2手柄初始化
 	MPU6050_Init(); // MPU6050初始化
 	// 电机PWM，满占空比是7199
