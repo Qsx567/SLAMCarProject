@@ -58,46 +58,32 @@ uint8_t Rcount = 0;//串口接收计数
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)//串口接收回调函数
 {
 	
-	if(huart==&huart5)
-	{
+	if(huart==&huart5){
+		
 		Recive_Data.buffer[Rcount] = uart5_rxbuff;
 		//判断数据包头是否为0xB5，在进行接收操作
 		(Recive_Data.buffer[0] == 0xB5)?(Rcount++):(Rcount=0);
-				if(Rcount == PROTOCOL_DATA_SIZE)//验证数据包的大小
-				{
-						if(Recive_Data.Sensor_str.Header == PROTOCOL_HEADER)//验证数据包头的校验信息
-						{		
-								if(Recive_Data.Sensor_str.End == PROTOCOL_END)//验证数据包尾的校验信息
-								{
-									HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_SET);
-									//接收树莓派端下发的目标速度值							
-//									FourWheel_car_Motion_Inverse(Recive_Data.Sensor_str.X_speed,Recive_Data.Sensor_str.Z_speed);
-//									if((Moto1.Target_Speed==0)&&(Moto2.Target_Speed==0)&&(Moto3.Target_Speed==0)&&(Moto4.Target_Speed==0))//当手柄没目标速度值，电机制动
-//									{
-//											motor_flag = 0;
-//									}
-//									else//当有速度值时，PWM控制
-//									{
-//											motor_flag = 1;
-//									}
-									
-						
-									//更新PID值
-										if((Recive_Data.Sensor_str.PID_Param[0] + Recive_Data.Sensor_str.PID_Param[1] + Recive_Data.Sensor_str.PID_Param[2]) != 0)
+		
+		if(Rcount == PROTOCOL_DATA_SIZE){//验证数据包的大小
+				if(Recive_Data.Sensor_str.Header == PROTOCOL_HEADER){//验证数据包头的校验信息
+						if(Recive_Data.Sensor_str.End == PROTOCOL_END){//验证数据包尾的校验信息
+								HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); // LED灯反转
+								//接收树莓派端下发的目标速度值							
+//								FourWheel_car_Motion_Inverse(Recive_Data.Sensor_str.X_speed,Recive_Data.Sensor_str.Z_speed);
+
+									// 更新PID值
+										if((Recive_Data.Sensor_str.PID_Param[0]  + 
+											  Recive_Data.Sensor_str.PID_Param[1]  + 
+										    Recive_Data.Sensor_str.PID_Param[2]) != 0)
 										{
 												KP = Recive_Data.Sensor_str.PID_Param[0];
 												KI = Recive_Data.Sensor_str.PID_Param[1];
 												KD = Recive_Data.Sensor_str.PID_Param[2];
 										}
-
-								}
-
 						}
-
-						
-					Rcount = 0;	
 				}
-				
+				Rcount = 0;	// 重新开始计数
+		}
 				
 		HAL_UART_Receive_IT(&huart5,(void *)&uart5_rxbuff,1);
 	}
