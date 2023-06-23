@@ -7,6 +7,7 @@
 #include "ps2.h"
 #include "serial.h"
 #include "mpu6050.h"
+#include "oled.h"
 
 
 // ---------------- 本文件为FreeRTOS的任务函数 -------------------------
@@ -60,9 +61,20 @@ int PS2_key=0;
 
 /* USER CODE END Variables */
 osThreadId control_TaskHandle;
+uint32_t control_TaskBuffer[ 128 ];
+osStaticThreadDef_t control_TaskControlBlock;
 osThreadId PS2_TaskHandle;
+uint32_t PS2_TaskBuffer[ 128 ];
+osStaticThreadDef_t PS2_TaskControlBlock;
 osThreadId Data_TaskHandle;
+uint32_t Data_TaskBuffer[ 128 ];
+osStaticThreadDef_t Data_TaskControlBlock;
 osThreadId MPU6050_TaskHandle;
+uint32_t MPU6050_TaskBuffer[ 128 ];
+osStaticThreadDef_t MPU6050_TaskControlBlock;
+osThreadId Show_TaskHandle;
+uint32_t Show_TaskBuffer[ 128 ];
+osStaticThreadDef_t Show_TaskControlBlock;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -73,6 +85,7 @@ void StartControlTask(void const * argument);
 void StartPS2Task(void const * argument);
 void StartDataTask(void const * argument);
 void StartMPU6050Task(void const * argument);
+void ShowTask(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -120,20 +133,24 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of control_Task */
-  osThreadDef(control_Task, StartControlTask, osPriorityNormal, 0, 128);
+  osThreadStaticDef(control_Task, StartControlTask, osPriorityNormal, 0, 128, control_TaskBuffer, &control_TaskControlBlock);
   control_TaskHandle = osThreadCreate(osThread(control_Task), NULL);
 
   /* definition and creation of PS2_Task */
-  osThreadDef(PS2_Task, StartPS2Task, osPriorityNormal, 0, 128);
+  osThreadStaticDef(PS2_Task, StartPS2Task, osPriorityNormal, 0, 128, PS2_TaskBuffer, &PS2_TaskControlBlock);
   PS2_TaskHandle = osThreadCreate(osThread(PS2_Task), NULL);
 
   /* definition and creation of Data_Task */
-  osThreadDef(Data_Task, StartDataTask, osPriorityNormal, 0, 128);
+  osThreadStaticDef(Data_Task, StartDataTask, osPriorityNormal, 0, 128, Data_TaskBuffer, &Data_TaskControlBlock);
   Data_TaskHandle = osThreadCreate(osThread(Data_Task), NULL);
 
   /* definition and creation of MPU6050_Task */
-  osThreadDef(MPU6050_Task, StartMPU6050Task, osPriorityBelowNormal, 0, 128);
+  osThreadStaticDef(MPU6050_Task, StartMPU6050Task, osPriorityBelowNormal, 0, 128, MPU6050_TaskBuffer, &MPU6050_TaskControlBlock);
   MPU6050_TaskHandle = osThreadCreate(osThread(MPU6050_Task), NULL);
+
+  /* definition and creation of Show_Task */
+  osThreadStaticDef(Show_Task, ShowTask, osPriorityBelowNormal, 0, 128, Show_TaskBuffer, &Show_TaskControlBlock);
+  Show_TaskHandle = osThreadCreate(osThread(Show_Task), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -161,7 +178,7 @@ void StartControlTask(void const * argument)
   {
 		osDelayUntil(&lastWakeTime,TimeIncrement);
 		Get_Velocity(); // 获取小车当前速度
-//		FourWheel_car_Motion_Inverse(Recive_Data.Sensor_str.X_speed,Recive_Data.Sensor_str.Z_speed);
+//		FourWheel_car_Motion_Inverse(Recive_Data.Sensor_str.X_speed,Recive_Data.Sensor_str.Z_speed); // 获取树莓派下发的速度值
 		FourWheel_car_Motion_Inverse(ps2.X_speed,ps2.Z_speed);
 		Motor_Control(PID_Incremental(&Moto1),PID_Incremental(&Moto2),PID_Incremental(&Moto3),PID_Incremental(&Moto4));
 
@@ -219,6 +236,7 @@ void StartDataTask(void const * argument)
   while(1)
   {
     osDelayUntil(&lastWakeTime,TimeIncrement);
+		
 		STM32_TO_ROS(); // 通过串口把数据发送给ROS
 		
   }
@@ -244,10 +262,34 @@ void StartMPU6050Task(void const * argument)
   while(1)
   {
 		osDelayUntil(&lastWakeTime,TimeIncrement);
+		
     MPU_Get_Accelerometer(&acc); // 获取加速度值
 		MPU_Get_Gyroscope(&gyro); // 获取角速度值
   }
   /* USER CODE END StartMPU6050Task */
+}
+
+/* USER CODE BEGIN Header_ShowTask */
+/**
+* @brief Function implementing the Show_Task thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_ShowTask */
+void ShowTask(void const * argument)
+{
+  /* USER CODE BEGIN ShowTask */
+  /* Infinite loop */
+	TickType_t lastWakeTime = xTaskGetTickCount();
+	const TickType_t TimeIncrement = pdMS_TO_TICKS(100); // 100ms / 10HZ
+  while(1)
+  {
+    osDelayUntil(&lastWakeTime,TimeIncrement);
+
+//		OLED_ShowString(8,0,"Q-Robot",16,1);
+//		OLED_Refresh();
+  }
+  /* USER CODE END ShowTask */
 }
 
 /* Private application code --------------------------------------------------*/
