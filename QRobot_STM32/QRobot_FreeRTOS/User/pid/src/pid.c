@@ -5,7 +5,7 @@
 // pwm+=Kp[e（k）-e(k-1)]+Ki*e(k)+Kd[e(k)-2e(k-1)+e(k-2)
 // 只使用PI控制
 
-float KP = 0;
+float KP = 800;
 float KI = 200;
 float KD = 0;
 

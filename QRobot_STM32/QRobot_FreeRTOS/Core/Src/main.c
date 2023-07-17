@@ -133,14 +133,8 @@ int main(void)
 	HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL); // M3_ENC
 	HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL); // M4_ENC
 	
-//				Moto1.Target_Speed = 0.5;
-//				Moto2.Target_Speed = 0.5;
-//				Moto3.Target_Speed = 0.5;
-//				Moto4.Target_Speed = 0.5;
-	
-
 	// ´®¿Ú
-//	HAL_UART_Receive_IT(&huart5,(void *)&uart5_rxbuff,1);
+	HAL_UART_Receive_IT(&huart5,(void *)&uart5_rxbuff,1);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

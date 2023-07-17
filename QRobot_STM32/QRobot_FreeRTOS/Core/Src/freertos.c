@@ -178,8 +178,8 @@ void StartControlTask(void const * argument)
   {
 		osDelayUntil(&lastWakeTime,TimeIncrement);
 		Get_Velocity(); // 获取小车当前速度
-//		FourWheel_car_Motion_Inverse(Recive_Data.Sensor_str.X_speed,Recive_Data.Sensor_str.Z_speed); // 获取树莓派下发的速度值
-		FourWheel_car_Motion_Inverse(ps2.X_speed,ps2.Z_speed);
+		FourWheel_car_Motion_Inverse(Recive_Data.Sensor_str.X_speed,Recive_Data.Sensor_str.Z_speed); // 获取树莓派下发的速度值
+//		FourWheel_car_Motion_Inverse(ps2.X_speed,ps2.Z_speed);
 		Motor_Control(PID_Incremental(&Moto1),PID_Incremental(&Moto2),PID_Incremental(&Moto3),PID_Incremental(&Moto4));
 
 		
