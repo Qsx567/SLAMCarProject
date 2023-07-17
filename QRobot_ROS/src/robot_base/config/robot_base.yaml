@@ -1,0 +1,8 @@
+serial:
+    usart_port: "/dev/ttyUSB0"
+    baud_rate: 115200
+
+PID:
+    KP: 800.0
+    KI: 200.0
+    KD: 0.0
