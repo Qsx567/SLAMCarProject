@@ -11,6 +11,7 @@
   - Orbbec Astra Pro RGB-D相机
   - 高精度9轴惯导模块N100
   - PS2遥控器
+  - wheeltec手柄
 - 软件：
   - STM32CubeMX 6.7.0
   - Keil 5.29.0
